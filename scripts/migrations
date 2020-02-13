@@ -1,0 +1,9 @@
+#!/bin/bash
+python manage.py migrate
+python manage.py makemigrations django_utils iSkyLIMS_wetlab iSkyLIMS_drylab
+python manage.py migrate
+python manage.py loaddata conf/dump_errors.json
+python manage.py loaddata conf/dump_runstates.json
+mysql -h iskylimsdb -u django -pINSERTDJANGOPASS iSkyLIMS -e 'UPDATE django_site SET domain="yourdomain.com", name="develop" WHERE id=1;'
+mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -h iskylimsdb -u root -pINSERTROOTPASS mysql
+

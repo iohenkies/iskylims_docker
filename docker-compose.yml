@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+  iskylimsdb:
+    container_name: iskylimsdb
+    image: mariadb:10.3.22-bionic
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: INSERTROOTPASS
+      MYSQL_DATABASE: iSkyLIMS
+      MYSQL_USER: django
+      MYSQL_PASSWORD: INSERTDJANGOPASS
+    networks:
+      - develop
+    volumes:
+      - db:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+      - /usr/share/zoneinfo:/usr/share/zoneinfo
+
+  iskylimsapp:
+    container_name: iskylimsapp
+    image: iskylimsapp
+    restart: always
+    depends_on:
+      - iskylimsdb
+    networks:
+      - develop
+    ports:
+      - "8000:8000"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /usr/share/zoneinfo:/usr/share/zoneinfo
+
+networks:
+  develop:
+
+volumes:
+  db:
