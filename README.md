@@ -40,3 +40,25 @@ $ sudo docker-compose restart
 On you workstation navigate to http://localhost:8000 with your browser.
 
 Be sure to run the migrations script only once.
+
+## Setup user and configure
+
+We have to setup a super user. With this user we can manage users, groups and settings.
+
+Use these commands, we're temporary enter the iSkyLIMS container to set this up:
+
+```
+$ sudo docker exec -it iskylimsapp bash
+# cd /srv/iSkyLIMS
+# ./manage.py createsuperuser
+<follow the prompts>
+# exit
+```
+
+You can now login at the admin page at `http://localhost:8000/admin`.
+
+More information [here](https://github.com/BU-ISCIII/iSkyLIMS/wiki/Initial-Settings).
+
+### Author information
+
+iohenkies
