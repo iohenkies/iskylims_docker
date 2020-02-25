@@ -55,7 +55,7 @@ $ sudo docker exec -it iskylimsapp bash
 # exit
 ```
 
-You can now login at the admin page at `http://localhost:8000/admin`.
+You can now login at the admin page at http://localhost:8000/admin.
 
 More information [here](https://github.com/BU-ISCIII/iSkyLIMS/wiki/Initial-Settings).
 
